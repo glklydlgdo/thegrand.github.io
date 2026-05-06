@@ -45,14 +45,21 @@ svg { stroke: currentColor; }
   #mobile-menu-button { display:flex; }
 }
 
-/* ===== RESPONSIVE SCALE FOR SMALL PHONES ===== */
-@media (max-width:414px){ /* iPhone 12, X, smaller */
-  section { transform: scale(0.9); transform-origin: top center; }
-  .text-4xl { font-size: 1.8rem; }
-  .text-6xl { font-size: 2.5rem; }
-  .gradient-btn { padding-left:0.8rem; padding-right:0.8rem; padding-top:0.6rem; padding-bottom:0.6rem; font-size:0.85rem; }
-  #desktop-menu a, #desktop-menu button { font-size:0.85rem; }
-  #desktop-menu { width:180px; }
+/* ===== HERO SCALE FIX ===== */
+#hero-scale {
+  transform-origin: top center;
+}
+
+@media (max-width:768px){
+  #hero-scale { transform: scale(0.9); }
+}
+
+@media (max-width:480px){
+  #hero-scale { transform: scale(0.8); }
+}
+
+@media (max-width:380px){
+  #hero-scale { transform: scale(0.72); }
 }
 </style>
 </head>
@@ -70,19 +77,16 @@ svg { stroke: currentColor; }
 <div class="w-full flex justify-center pt-6 px-4 z-10 relative">
   <div class="backdrop-blur-xl bg-white/5 border border-white/10 rounded-2xl px-6 py-3 flex items-center justify-between w-full max-w-5xl shadow-lg fade-up fade-1">
     
-    <!-- Logo -->
     <div class="flex items-center gap-3">
       <img src="assets/PEEK A BOOTH hori.png" class="w-36 animate-bounce-slow">
     </div>
 
-    <!-- Desktop Menu -->
     <div id="desktop-menu" class="flex items-center gap-3">
       <a href="#" class="text-sm text-gray-300 hover:text-white">Home</a>
       <a href="#" class="text-sm text-gray-300 hover:text-white">Contact</a>
       <button id="book-btn" class="bg-white text-black px-4 py-1.5 rounded-lg text-sm font-medium">Book Now</button>
     </div>
 
-    <!-- Mobile Hamburger -->
     <div id="mobile-menu-button" class="md:hidden flex flex-col justify-between w-6 h-5">
       <span class="block w-full h-0.5 bg-white"></span>
       <span class="block w-full h-0.5 bg-white"></span>
@@ -93,84 +97,80 @@ svg { stroke: currentColor; }
 </div>
 
 <!-- HERO -->
-<section class="text-center px-6 mt-20 z-10 max-w-3xl flex flex-col items-center w-full">
+<section class="text-center mt-20 z-10 w-full flex justify-center">
 
-  <!-- SOCIAL PROOF -->
-  <div class="flex items-center justify-center gap-3 mb-4 fade-up fade-1 flex-wrap">
-    <div class="flex -space-x-2">
-      <img src="https://i.pravatar.cc/40?img=1" class="w-8 h-8 rounded-full border border-white">
-      <img src="https://i.pravatar.cc/40?img=2" class="w-8 h-8 rounded-full border border-white">
-      <img src="https://i.pravatar.cc/40?img=3" class="w-8 h-8 rounded-full border border-white">
+  <div id="hero-scale" class="max-w-3xl w-full px-6 flex flex-col items-center">
+
+    <div class="flex items-center justify-center gap-3 mb-4 fade-up fade-1 flex-wrap">
+      <div class="flex -space-x-2">
+        <img src="https://i.pravatar.cc/40?img=1" class="w-8 h-8 rounded-full border border-white">
+        <img src="https://i.pravatar.cc/40?img=2" class="w-8 h-8 rounded-full border border-white">
+        <img src="https://i.pravatar.cc/40?img=3" class="w-8 h-8 rounded-full border border-white">
+      </div>
+      <div class="text-yellow-400 text-sm font-medium">★★★★★</div>
+      <p class="text-gray-400 text-sm">Loved by 500+ clients</p>
     </div>
-    <div class="text-yellow-400 text-sm font-medium">★★★★★</div>
-    <p class="text-gray-400 text-sm">Loved by 500+ clients</p>
-  </div>
 
-  <!-- HEADLINE -->
-  <h1 class="text-4xl md:text-6xl font-bold leading-tight fade-up fade-2">
-    We’re building<br>
-    something <span class="glow">insane!</span>✨
-  </h1>
+    <h1 class="text-4xl md:text-6xl font-bold leading-tight fade-up fade-2">
+      We’re building<br>
+      something <span class="glow">insane!</span>✨
+    </h1>
 
-  <div class="h-10"></div>
+    <div class="h-10"></div>
 
-  <!-- UNDER DEVELOPMENT -->
-  <p class="text-gray-400 fade-up fade-2 leading-relaxed max-w-lg mx-auto text-center">
-    Our website is currently <strong>under development</strong>. 🚧<br>
-    💞 Follow us on social media for updates.
-  </p>
+    <p class="text-gray-400 fade-up fade-2 leading-relaxed max-w-lg mx-auto text-center">
+      Our website is currently <strong>under development</strong>. 🚧<br>
+      💞 Follow us on social media for updates.
+    </p>
 
-  <div class="h-10"></div>
+    <div class="h-10"></div>
 
-  <!-- SOCIAL BUTTONS -->
-  <div class="flex justify-center gap-3 flex-wrap fade-up fade-3 w-full">
-    <a href="https://www.facebook.com/peekaboothph" class="gradient-btn px-5 py-2.5 rounded-full flex items-center gap-2 hover:-translate-y-1 transition">
-      <i data-lucide="facebook" class="icon"></i> Facebook
-    </a>
-    <a href="https://www.instagram.com/peekaboothph" class="gradient-btn px-5 py-2.5 rounded-full flex items-center gap-2 hover:-translate-y-1 transition">
-      <i data-lucide="instagram" class="icon"></i> Instagram
-    </a>
-    <a href="https://www.tiktok.com/@peekaboothph" class="gradient-btn px-5 py-2.5 rounded-full flex items-center gap-2 hover:-translate-y-1 transition">
-      <svg viewBox="0 0 24 24" fill="currentColor" class="icon">
-        <path d="M19.589 6.686a4.793 4.793 0 0 1-3.77-1.92v8.828a4.804 4.804 0 1 1-4.804-4.804c.298 0 .59.027.874.08v2.483a2.32 2.32 0 1 0 1.605 2.212V2h2.325a4.79 4.79 0 0 0 3.77 2.252v2.434z"/>
-      </svg>
-      TikTok
-    </a>
-  </div>
-
-  <div class="h-6"></div>
-
-  <!-- AVAILABLE SOON BOX -->
-  <div class="mt-6 backdrop-blur-xl bg-white/5 border border-white/10 rounded-2xl px-6 py-4 flex items-center justify-center gap-4 shadow-lg fade-up fade-3 mx-auto max-w-lg">
-    <img src="assets/PEEK A BOOTH box.png" class="w-24 h-24 object-contain flex-shrink-0">
-    <div class="text-left">
-      <p class="text-xs text-orange-400">AVAILABLE SOON!</p>
-      <p class="font-semibold">Peek A Booth - Photobooth</p>
-      <p class="text-xs text-gray-400">For events & bookings</p>
+    <!-- SOCIAL BUTTONS -->
+    <div class="flex justify-center gap-3 flex-wrap fade-up fade-3 w-full">
+      <a href="https://www.facebook.com/peekaboothph" target="_blank" rel="noopener noreferrer" class="gradient-btn px-5 py-2.5 rounded-full flex items-center gap-2 hover:-translate-y-1 transition">
+        <i data-lucide="facebook" class="icon"></i> Facebook
+      </a>
+      <a href="https://www.instagram.com/peekaboothph" target="_blank" rel="noopener noreferrer" class="gradient-btn px-5 py-2.5 rounded-full flex items-center gap-2 hover:-translate-y-1 transition">
+        <i data-lucide="instagram" class="icon"></i> Instagram
+      </a>
+      <a href="https://www.tiktok.com/@peekaboothph" target="_blank" rel="noopener noreferrer" class="gradient-btn px-5 py-2.5 rounded-full flex items-center gap-2 hover:-translate-y-1 transition">
+        <svg viewBox="0 0 24 24" fill="currentColor" class="icon">
+          <path d="M19.589 6.686a4.793 4.793 0 0 1-3.77-1.92v8.828a4.804 4.804 0 1 1-4.804-4.804c.298 0 .59.027.874.08v2.483a2.32 2.32 0 1 0 1.605 2.212V2h2.325a4.79 4.79 0 0 0 3.77 2.252v2.434z"/>
+        </svg>
+        TikTok
+      </a>
     </div>
+
+    <div class="h-6"></div>
+
+    <div class="mt-6 backdrop-blur-xl bg-white/5 border border-white/10 rounded-2xl px-6 py-4 flex items-center justify-center gap-4 shadow-lg fade-up fade-3 mx-auto max-w-lg">
+      <img src="assets/PEEK A BOOTH box.png" class="w-24 h-24 object-contain flex-shrink-0">
+      <div class="text-left">
+        <p class="text-xs text-orange-400">AVAILABLE SOON!</p>
+        <p class="font-semibold">Peek A Booth - Photobooth</p>
+        <p class="text-xs text-gray-400">For events & bookings</p>
+      </div>
+    </div>
+
+    <div class="h-6"></div>
+
+    <div class="mt-6 pt-6 border-t border-white/10 fade-up fade-3 w-full px-6 text-center">
+      <p class="text-gray-400 text-sm mb-2 text-lg">Get in touch:</p>
+      <a href="mailto:contact@peekaboothph.com" class="text-blue-400 font-semibold flex items-center justify-center gap-2 text-lg">
+        <i data-lucide="mail" class="icon"></i>
+        contact@peekaboothph.com
+      </a>
+    </div>
+
+    <div class="h-6"></div>
+
   </div>
-
-  <div class="h-6"></div>
-
-  <!-- EMAIL -->
-  <div class="mt-6 pt-6 border-t border-white/10 fade-up fade-3 w-full px-6 text-center">
-    <p class="text-gray-400 text-sm mb-2 text-lg">Get in touch:</p>
-    <a href="mailto:contact@peekaboothph.com" class="text-blue-400 font-semibold flex items-center justify-center gap-2 text-lg">
-      <i data-lucide="mail" class="icon"></i>
-      contact@peekaboothph.com
-    </a>
-  </div>
-
-      <!-- SPACER --> 
-   <div class="h-6"></div>
-
 </section>
 
 <script>
 document.addEventListener("DOMContentLoaded", function () {
   lucide.createIcons();
 
-  // MOBILE MENU TOGGLE
   const mobileBtn = document.getElementById('mobile-menu-button');
   const desktopMenu = document.getElementById('desktop-menu');
 
