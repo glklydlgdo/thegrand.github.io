@@ -419,7 +419,7 @@ input[type="date"]::-webkit-calendar-picker-indicator { filter: invert(1); curso
       </div>
       <div class="input-group">
         <label>Phone Number</label>
-        <input type="tel" id="field-phone" class="form-input" placeholder="+63 912 345 6789">
+        <input type="tel" id="field-phone" class="form-input" placeholder="09123456789">
         <div class="error-msg" id="err-phone">Please enter a valid phone number.</div>
       </div>
       <div class="input-group">
@@ -549,6 +549,51 @@ document.getElementById('back-to-addons').onclick = () => {
   animatePage(pAddons); 
 };
 
+/* Real-time Validation Handling */
+document.getElementById('field-name').addEventListener('input', function() {
+  if (this.value.trim()) {
+    document.getElementById('err-name').style.display = 'none';
+  }
+});
+
+document.getElementById('field-email').addEventListener('input', function() {
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  if (emailRegex.test(this.value.trim())) {
+    document.getElementById('err-email').style.display = 'none';
+  }
+});
+
+document.getElementById('field-phone').addEventListener('input', function() {
+  const value = this.value.trim();
+  const isNumeric = /^[0-9]+$/.test(value);
+  const errPhone = document.getElementById('err-phone');
+
+  if (value === "") {
+    errPhone.style.display = 'none';
+  } else if (!isNumeric) {
+    errPhone.innerText = "Please enter a valid phone number.";
+    errPhone.style.display = 'block';
+  } else if (value.length !== 11) {
+    errPhone.innerText = "It should be an 11-digit phone number.";
+    errPhone.style.display = 'block';
+  } else {
+    errPhone.style.display = 'none';
+  }
+});
+
+document.getElementById('field-date').addEventListener('input', function() {
+  if (this.value) {
+    document.getElementById('err-date').style.display = 'none';
+  }
+});
+
+toDetailsBtn.onclick = () => showProcessing(() => { 
+  pAddons.style.display='none'; 
+  pDetails.style.display='flex'; 
+  overlayContainer.scrollTop = 0; 
+  animatePage(pDetails); 
+});
+
 document.getElementById('to-summary').onclick = () => {
   const name = document.getElementById('field-name').value.trim();
   const email = document.getElementById('field-email').value.trim();
@@ -565,7 +610,24 @@ document.getElementById('to-summary').onclick = () => {
   if(!name){ errName.style.display='block'; isValid=false; } else { errName.style.display='none'; }
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   if(!emailRegex.test(email)){ errEmail.style.display='block'; isValid=false; } else { errEmail.style.display='none'; }
-  if(!phone){ errPhone.style.display='block'; isValid=false; } else { errPhone.style.display='none'; }
+  
+  const isNumeric = /^[0-9]+$/.test(phone);
+  if(!phone){
+    errPhone.innerText = "Please enter a valid phone number.";
+    errPhone.style.display = 'block';
+    isValid = false;
+  } else if(!isNumeric){
+    errPhone.innerText = "Please enter a valid phone number.";
+    errPhone.style.display = 'block';
+    isValid = false;
+  } else if(phone.length !== 11){
+    errPhone.innerText = "It should be an 11-digit phone number.";
+    errPhone.style.display = 'block';
+    isValid = false;
+  } else {
+    errPhone.style.display = 'none';
+  }
+  
   if(!date){ errDate.style.display='block'; isValid=false; } else { errDate.style.display='none'; }
 
   if(isValid){
