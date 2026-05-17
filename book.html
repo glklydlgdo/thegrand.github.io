@@ -349,6 +349,8 @@ function animatePage(page){
 }
 
 const procScreen = document.getElementById('processing-screen');
+const overlayContainer = document.querySelector('.overlay');
+
 function showProcessing(onComplete) {
   procScreen.style.display = 'flex';
   setTimeout(() => { procScreen.style.display = 'none'; onComplete(); }, 1200);
@@ -396,10 +398,33 @@ const pStyle = document.getElementById('page-style');
 const pEvent = document.getElementById('page-event');
 const pAddons = document.getElementById('page-addons');
 
-toEventBtn.onclick = () => showProcessing(() => { pStyle.style.display='none'; pEvent.style.display='flex'; animatePage(pEvent); });
-document.getElementById('back-to-style').onclick = () => { pEvent.style.display='none'; pStyle.style.display='flex'; animatePage(pStyle); };
-toAddonsBtn.onclick = () => showProcessing(() => { pEvent.style.display='none'; pAddons.style.display='flex'; animatePage(pAddons); });
-document.getElementById('back-to-event').onclick = () => { pAddons.style.display='none'; pEvent.style.display='flex'; animatePage(pEvent); };
+toEventBtn.onclick = () => showProcessing(() => { 
+  pStyle.style.display='none'; 
+  pEvent.style.display='flex'; 
+  overlayContainer.scrollTop = 0; // RESET SCROLL
+  animatePage(pEvent); 
+});
+
+document.getElementById('back-to-style').onclick = () => { 
+  pEvent.style.display='none'; 
+  pStyle.style.display='flex'; 
+  overlayContainer.scrollTop = 0; // RESET SCROLL
+  animatePage(pStyle); 
+};
+
+toAddonsBtn.onclick = () => showProcessing(() => { 
+  pEvent.style.display='none'; 
+  pAddons.style.display='flex'; 
+  overlayContainer.scrollTop = 0; // RESET SCROLL
+  animatePage(pAddons); 
+});
+
+document.getElementById('back-to-event').onclick = () => { 
+  pAddons.style.display='none'; 
+  pEvent.style.display='flex'; 
+  overlayContainer.scrollTop = 0; // RESET SCROLL
+  animatePage(pEvent); 
+};
 
 animatePage(pStyle);
 </script>
