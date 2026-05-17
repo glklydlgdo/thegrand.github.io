@@ -145,7 +145,32 @@ button { padding:10px 28px; border-radius:8px; border:none; font-weight:600; cur
   .event-type-card.selected[data-event="family-gathering"] { border-color: #22c55e; box-shadow: 0 0 50px rgba(34, 197, 94, 0.4); }
   .event-type-card.selected[data-event="school-event"] { border-color: #a855f7; box-shadow: 0 0 50px rgba(168, 85, 247, 0.4); }
 
-.custom-input { width: 100%; background: #161B2B; border: 1px solid #30364d; border-radius: 8px; padding: 14px; color: #fff; margin-top: 10px; transition: box-shadow 0.3s ease; }
+/* CUSTOM INPUT LAYOUT FIXES & BLUE GLOW EFFECT */
+.custom-input-wrapper {
+  width: 100%;
+  max-width: 850px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.custom-input { 
+  width: 100%; 
+  background: #161B2B; 
+  border: 1px solid #30364d; 
+  border-radius: 8px; 
+  padding: 14px; 
+  color: #fff; 
+  margin-top: 10px; 
+  outline: none;
+  font-family: 'Poppins', sans-serif;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease; 
+}
+.custom-input:focus {
+  border-color: #3B82F6;
+  box-shadow: 0 0 15px rgba(59, 130, 246, 0.6);
+}
+
 @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
 @keyframes check-pop { 0% { transform: scale(0); } 100% { transform: scale(1); } }
 
@@ -178,6 +203,7 @@ button { padding:10px 28px; border-radius:8px; border:none; font-weight:600; cur
   #page-event .event-type-description { display: block; font-size: 0.75rem; }
   
   .modal p { max-width: 90%; font-size: 14px; }
+  .custom-input-wrapper { max-width: 100%; }
 }
 
 .form-container { width: 100%; max-width: 600px; display: flex; flex-direction: column; gap: 20px; }
@@ -334,8 +360,8 @@ input[type="date"]::-webkit-calendar-picker-indicator { filter: invert(1); curso
         <div class="event-hover-content"><h4>Examples:</h4><p>First, Silver, Gold Wedding, etc.</p></div>
       </div>
     </div>
-    <div style="width:100%; max-width:850px;">
-        <p style="text-align:left; color:#fff; margin-bottom:5px;">Or type your event type:</p>
+    <div class="custom-input-wrapper">
+        <p style="text-align:center; color:#fff; margin-bottom:5px; width: 100%;">Or type your event type:</p>
         <input type="text" class="custom-input" placeholder="Enter your event type...">
     </div>
     <div class="buttons">
@@ -426,7 +452,7 @@ input[type="date"]::-webkit-calendar-picker-indicator { filter: invert(1); curso
 
 <script>
 function animatePage(page){
-  const elements = page.querySelectorAll('.inner-content, .text-container, button, h2, p, .event-type-card, input, .input-group');
+  const elements = page.querySelectorAll('.inner-content, .text-container, button, h2, p, .event-type-card, input, .input-group, .custom-input-wrapper');
   elements.forEach(el => { el.style.transition = 'none'; el.style.opacity = '0'; el.style.transform = 'translateY(20px)'; });
   void page.offsetWidth;
   elements.forEach((el, i) => { el.style.transition = 'all 0.5s ease'; setTimeout(() => { el.style.opacity = '1'; el.style.transform = 'translateY(0)'; }, i * 80); });
