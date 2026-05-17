@@ -31,7 +31,6 @@ body, html {
 
 .modal {display:flex; flex-direction:column; align-items:center; gap:32px; width:100%; max-width:900px; margin: auto;}
 
-/* ADJUSTED TITLE TO BE CLOSER TO DESCRIPTION */
 .modal h2 {color:#fff; font-size:32px; font-weight:700; text-align:center; width:100%; opacity:0; transform:translateY(20px); transition:all 0.5s ease; margin-bottom: -16px;}
 
 .modal p {
@@ -189,11 +188,14 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 .input-group { display: flex; flex-direction: column; gap: 8px; width: 100%; }
 .input-group label { color: #fff; font-size: 14px; font-weight: 600; text-align: left; }
 .input-group label span { font-weight: 400; color: #A0A0A0; }
+
+/* FIXING DATE BOX WIDTH ON MOBILE */
 .form-input {
   width: 100%; background: #161B2B; border: 1.5px solid #30364d; border-radius: 10px;
   padding: 14px 18px; color: #fff; font-family: 'Poppins', sans-serif; font-size: 16px;
   font-weight: 400;
   transition: all 0.3s ease;
+  box-sizing: border-box; 
 }
 .form-input:focus { border-color: #3B82F6; outline: none; box-shadow: 0 0 10px rgba(59, 130, 246, 0.2); }
 .form-textarea { min-height: 120px; resize: none; }
