@@ -58,9 +58,27 @@ body, html {
   transition: transform 0.3s ease, box-shadow 0.3s ease, border 0.3s ease;
 }
 .style-card.disabled { opacity:0.4; cursor:not-allowed; pointer-events:none; }
-.style-card.premium { border:2px solid #FFB33B; animation: premiumGlow 1.8s infinite alternate; }
+.style-card.premium { border:2px solid #FF8C00; animation: premiumGlow 1.8s infinite alternate; }
 .style-card:hover:not(.disabled) { transform:translateY(-6px) scale(1.03); box-shadow:0 12px 28px rgba(0,0,0,0.5); }
 .style-card.selected { border:2px solid #3B82F6; animation: selectedGlow 1.2s infinite alternate; }
+
+/* PREMIUM TEXT EFFECT - STRICT ADDITION ONLY */
+.style-card.premium h3 {
+  background: linear-gradient(to right, #FF8C00, #f1a241, #ff9f2a, #c17f2e, #ff9b20);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent !important;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  background-size: 200% auto;
+  animation: goldShimmer 3s linear infinite;
+  filter: drop-shadow(0 0 1px rgba(191, 149, 63, 0.4));
+}
+
+@keyframes goldShimmer {
+  to { background-position: 200% center; }
+}
 
 .style-card .icon { font-size:40px; margin-bottom:16px; }
 .style-card .inner-content { opacity:0; transform:translateY(20px); transition:all 0.4s ease; }
@@ -77,12 +95,68 @@ body, html {
 .style-card.selected .checkmark { opacity:1; }
 
 @keyframes selectedGlow {0%{box-shadow:0 0 6px rgba(59,130,246,0.5);}50%{box-shadow:0 0 12px rgba(59,130,246,0.8);}100%{box-shadow:0 0 6px rgba(59,130,246,0.5);}}
-@keyframes premiumGlow {0%{box-shadow:0 0 10px rgba(255,179,59,0.5);}50%{box-shadow:0 0 20px rgba(255,179,59,1);}100%{box-shadow:0 0 10px rgba(255,179,59,0.5);}}
 
-.tag { margin-top:10px; font-size:12px; font-weight:600; padding:4px 12px; border-radius:8px; color:#fff; text-align:center; text-shadow:0 1px 2px rgba(0,0,0,0.5);}
-.most-booked { background:#FFB33B; }
-.coming-soon { background:#606060; }
+@keyframes premiumGlow {0%{box-shadow:0 0 10px rgba(255,140,0,0.4);}50%{box-shadow:0 0 20px rgba(255,140,0,0.8);}100%{box-shadow:0 0 10px rgba(255,140,0,0.4);}}
 
+/* --- INNOVATIVE TAG DESIGNS ONLY --- */
+.tag { 
+  position: absolute;
+  top: -14px;
+  font-size: 10px;
+  font-weight: 800;
+  padding: 6px 16px;
+  border-radius: 50px;
+  color: #fff;
+  text-transform: uppercase;
+  letter-spacing: 1.2px;
+  z-index: 10;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.6);
+}
+
+.most-booked { 
+  background: linear-gradient(135deg, #FF8C00 0%, #E67E22 50%, #D35400 100%);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  text-shadow: 0 1px 2px rgba(0,0,0,0.5);
+}
+
+.coming-soon { 
+  background: #2D3436; /* DARK STEEL GRAY */
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #ffffff; 
+  animation: glassPulse 2s infinite ease-in-out;
+}
+
+@keyframes shimmer {
+  0% { left: -60%; }
+  15% { left: 120%; }
+  100% { left: 120%; }
+}
+
+@keyframes glassPulse {
+  0%, 100% { border-color: rgba(255, 255, 255, 0.1); box-shadow: 0 0 5px rgba(0, 0, 0, 0.2); }
+  50% { border-color: rgba(255, 255, 255, 0.3); box-shadow: 0 0 15px rgba(0, 0, 0, 0.4); }
+}
+
+.tag::after {
+  content: "";
+  position: absolute;
+  top: -50%; left: -60%;
+  width: 25%; height: 200%;
+  background: rgba(255, 255, 255, 0.3);
+  transform: rotate(30deg);
+  animation: shimmer 4s infinite;
+}
+
+.tag:empty { display: none; }
+
+/* =========================================
+   REST OF ORIGINAL STYLES (UNTOUCHED)
+   ========================================= */
 .buttons { display:flex; justify-content:center; gap:16px; width:100%; margin-top:20px; }
 button { padding:10px 28px; border-radius:8px; border:none; font-weight:600; cursor:pointer; transition:all 0.2s ease; opacity:0; transform:translateY(12px);}
 .cancel { background:#2D3748; color:#fff; }
@@ -145,7 +219,6 @@ button { padding:10px 28px; border-radius:8px; border:none; font-weight:600; cur
   .event-type-card.selected[data-event="family-gathering"] { border-color: #22c55e; box-shadow: 0 0 50px rgba(34, 197, 94, 0.4); }
   .event-type-card.selected[data-event="school-event"] { border-color: #a855f7; box-shadow: 0 0 50px rgba(168, 85, 247, 0.4); }
 
-/* CUSTOM INPUT LAYOUT FIXES & BLUE GLOW EFFECT */
 .custom-input-wrapper {
   width: 100%;
   max-width: 850px;
@@ -269,12 +342,12 @@ input[type="date"]::-webkit-calendar-picker-indicator { filter: invert(1); curso
         <div class="checkmark">✔</div>
         <div class="icon">✨</div>
         <div class="inner-content"><h3>Premium</h3><p>Deluxe setup with professional lighting, custom props, and premium prints</p></div>
-        <div class="tag most-booked">⭐ MOST BOOKED</div>
+        <div class="tag most-booked">MOST BOOKED</div>
       </div>
       <div class="style-card disabled">
         <div class="icon">🪞</div>
         <div class="inner-content"><h3>Mirror</h3><p>Interactive smart mirror with digital effects and instant sharing</p></div>
-        <div class="tag coming-soon">👀 COMING SOON</div>
+        <div class="tag coming-soon">COMING SOON</div>
       </div>
     </div>
     <div class="buttons">
@@ -424,7 +497,7 @@ input[type="date"]::-webkit-calendar-picker-indicator { filter: invert(1); curso
       </div>
       <div class="input-group">
         <label>Event Date <span>(final or tentative)</span></label>
-        <input type="date" id="field-date" class="form-input" required>
+        <input type="date" id="field-date" class="form-input" max="9999-12-31" oninput="if(this.value.split('-')[0].length > 4) this.value=''" required>
         <div class="error-msg" id="err-date">Please add an event date (it can be a final or tentative date).</div>
       </div>
       <div class="input-group">
@@ -452,7 +525,7 @@ input[type="date"]::-webkit-calendar-picker-indicator { filter: invert(1); curso
 
 <script>
 function animatePage(page){
-  const elements = page.querySelectorAll('.inner-content, .text-container, button, h2, p, .event-type-card, input, .input-group, .custom-input-wrapper');
+  const elements = page.querySelectorAll('.inner-content, .text-container, button, h2, p, .event-type-card, input, .input-group, .custom-input-wrapper, .tag');
   elements.forEach(el => { el.style.transition = 'none'; el.style.opacity = '0'; el.style.transform = 'translateY(20px)'; });
   void page.offsetWidth;
   elements.forEach((el, i) => { el.style.transition = 'all 0.5s ease'; setTimeout(() => { el.style.opacity = '1'; el.style.transform = 'translateY(0)'; }, i * 80); });
@@ -549,51 +622,43 @@ document.getElementById('back-to-addons').onclick = () => {
   animatePage(pAddons); 
 };
 
-/* Real-time Validation Handling */
-document.getElementById('field-name').addEventListener('input', function() {
-  if (this.value.trim()) {
-    document.getElementById('err-name').style.display = 'none';
-  }
-});
+/* Strict Real-time Validation Handling */
 
+// NAME & EMAIL
+document.getElementById('field-name').addEventListener('input', function() {
+  if (this.value.trim()) document.getElementById('err-name').style.display = 'none';
+});
 document.getElementById('field-email').addEventListener('input', function() {
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  if (emailRegex.test(this.value.trim())) {
-    document.getElementById('err-email').style.display = 'none';
-  }
+  if (emailRegex.test(this.value.trim())) document.getElementById('err-email').style.display = 'none';
 });
 
+// PHONE: Persistent 11-digit error
 document.getElementById('field-phone').addEventListener('input', function() {
   const value = this.value.trim();
   const isNumeric = /^[0-9]+$/.test(value);
   const errPhone = document.getElementById('err-phone');
 
-  if (value === "") {
-    errPhone.style.display = 'none';
-  } else if (!isNumeric) {
-    errPhone.innerText = "Please enter a valid phone number.";
-    errPhone.style.display = 'block';
-  } else if (value.length !== 11) {
-    errPhone.innerText = "It should be an 11-digit phone number.";
+  // Show error if empty, not numeric, or not exactly 11 digits
+  if (value.length !== 11 || !isNumeric) {
+    errPhone.innerText = (isNumeric || value === "") ? "It should be an 11-digit phone number." : "Please enter numbers only.";
     errPhone.style.display = 'block';
   } else {
     errPhone.style.display = 'none';
   }
 });
 
-document.getElementById('field-date').addEventListener('input', function() {
+// DATE: Clear error immediately on change
+const dateField = document.getElementById('field-date');
+const dateError = document.getElementById('err-date');
+
+dateField.addEventListener('change', function() {
   if (this.value) {
-    document.getElementById('err-date').style.display = 'none';
+    dateError.style.display = 'none';
   }
 });
 
-toDetailsBtn.onclick = () => showProcessing(() => { 
-  pAddons.style.display='none'; 
-  pDetails.style.display='flex'; 
-  overlayContainer.scrollTop = 0; 
-  animatePage(pDetails); 
-});
-
+/* NEXT BUTTON LOGIC */
 document.getElementById('to-summary').onclick = () => {
   const name = document.getElementById('field-name').value.trim();
   const email = document.getElementById('field-email').value.trim();
@@ -607,28 +672,17 @@ document.getElementById('to-summary').onclick = () => {
 
   let isValid = true;
 
-  if(!name){ errName.style.display='block'; isValid=false; } else { errName.style.display='none'; }
-  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  if(!emailRegex.test(email)){ errEmail.style.display='block'; isValid=false; } else { errEmail.style.display='none'; }
+  if(!name){ errName.style.display='block'; isValid=false; }
   
-  const isNumeric = /^[0-9]+$/.test(phone);
-  if(!phone){
-    errPhone.innerText = "Please enter a valid phone number.";
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  if(!emailRegex.test(email)){ errEmail.style.display='block'; isValid=false; }
+  
+  if(!phone || phone.length !== 11 || !/^[0-9]+$/.test(phone)){
     errPhone.style.display = 'block';
     isValid = false;
-  } else if(!isNumeric){
-    errPhone.innerText = "Please enter a valid phone number.";
-    errPhone.style.display = 'block';
-    isValid = false;
-  } else if(phone.length !== 11){
-    errPhone.innerText = "It should be an 11-digit phone number.";
-    errPhone.style.display = 'block';
-    isValid = false;
-  } else {
-    errPhone.style.display = 'none';
   }
   
-  if(!date){ errDate.style.display='block'; isValid=false; } else { errDate.style.display='none'; }
+  if(!date){ errDate.style.display='block'; isValid=false; }
 
   if(isValid){
     showProcessing(() => { 
